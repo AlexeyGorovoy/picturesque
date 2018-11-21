@@ -1,7 +1,10 @@
 package com.github.alexeygorovoy.picturesque.dagger.app
 
+import android.content.Context
+import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.HeroApi
-
+import com.github.alexeygorovoy.picturesque.api.UnsplashApi
+import com.github.alexeygorovoy.picturesque.api.interceptors.UnsplashHeadersInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -28,19 +31,42 @@ class NetworkModule {
 
     @AppScope
     @Provides
-    internal fun provideHttpClient(logger: HttpLoggingInterceptor): OkHttpClient {
+    internal fun provideUnsplashApi(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJavaCallAdapterFactory) : UnsplashApi {
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(UNSPLASH_BASE_URL)
+            .addConverterFactory(gson)
+            .addCallAdapterFactory(rxAdapter)
+            .build()
+
+        return retrofit.create(UnsplashApi::class.java)
+    }
+
+    @AppScope
+    @Provides
+    internal fun provideHttpClient(
+        logger: HttpLoggingInterceptor,
+        unsplashHeadersInterceptor: UnsplashHeadersInterceptor
+    ): OkHttpClient {
         val builder = OkHttpClient()
             .newBuilder()
+            .addInterceptor(unsplashHeadersInterceptor)
             .addInterceptor(logger)
         return builder.build()
     }
 
     @AppScope
     @Provides
-    internal fun provideInterceptor(): HttpLoggingInterceptor {
+    internal fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return httpLoggingInterceptor
+    }
+
+    @AppScope
+    @Provides
+    internal fun provideUnsplashHeadersInterceptor(context: Context): UnsplashHeadersInterceptor{
+        return UnsplashHeadersInterceptor(context.getString(R.string.unsplash_access_key))
     }
 
     @AppScope

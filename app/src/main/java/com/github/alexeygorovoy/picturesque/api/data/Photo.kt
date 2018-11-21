@@ -1,7 +1,7 @@
 package com.github.alexeygorovoy.picturesque.api.data
 
 data class Photo(
-    val errors: List<String>,
+    val errors: List<String>?,
     val id: String,
     val created_at: String,
     val updated_at: String,
@@ -9,7 +9,7 @@ data class Photo(
     val height: Int,
     val color: String,
     val description: String,
-    val ursl: PhotoUrls,
+    val urls: PhotoUrls,
     val views: Int,
     val downloads: Int
 )

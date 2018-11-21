@@ -1,10 +1,9 @@
 package com.github.alexeygorovoy.picturesque.ui.common
 
 import android.os.Bundle
-
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
-import com.github.alexeygorovoy.picturesque.ui.demo.heroes.view.HeroesListFragment
+import com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.view.SinglePhotoFragment
 
 class MainActivity : BaseActivity() {
 
@@ -15,7 +14,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-            replaceToFragment(HeroesListFragment.newInstance())
+            replaceToFragment(SinglePhotoFragment.newInstance())
         }
     }
 

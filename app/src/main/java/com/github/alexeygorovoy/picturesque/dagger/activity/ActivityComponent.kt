@@ -6,6 +6,8 @@ import com.github.alexeygorovoy.picturesque.dagger.demo.heroes.HeroesComponent
 import com.github.alexeygorovoy.picturesque.dagger.demo.heroes.HeroesModule
 import com.github.alexeygorovoy.picturesque.dagger.demo.splash.SplashComponent
 import com.github.alexeygorovoy.picturesque.dagger.demo.splash.SplashModule
+import com.github.alexeygorovoy.picturesque.dagger.ui.developer.SinglePhotoComponent
+import com.github.alexeygorovoy.picturesque.dagger.ui.developer.SinglePhotoModule
 import com.github.alexeygorovoy.picturesque.ui.common.BaseActivity
 
 import dagger.Subcomponent
@@ -17,6 +19,7 @@ interface ActivityComponent {
     operator fun plus(module: SplashModule): SplashComponent
     operator fun plus(module: HeroesModule): HeroesComponent
     operator fun plus(module: HeroDetailsModule): HeroDetailsComponent
+    operator fun plus(module: SinglePhotoModule): SinglePhotoComponent
 
     fun inject(baseActivity: BaseActivity)
 

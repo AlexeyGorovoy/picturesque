@@ -8,16 +8,10 @@ interface UnsplashApi {
 
     @GET("photos/random")
     fun getRandomPhoto() : Single<Photo>
-//    @AppScope
-//    @Provides
-//    internal fun provideUnsplashApi(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJavaCallAdapterFactory) : UnsplashApi {
-//        val retrofit = Retrofit.Builder()
-//            .client(client)
-//            .baseUrl(HEROES_BASE_URL)
-//            .addConverterFactory(gson)
-//            .addCallAdapterFactory(rxAdapter)
-//            .build()
-//
-//        return retrofit.create(UnsplashApi::class.java)
-//    }
+
+    companion object {
+        const val AuthorizationHeader = "Authorization"
+        fun authorizationHeaderValue(apiKey: String) = "Client-ID $apiKey"
+    }
+
 }
