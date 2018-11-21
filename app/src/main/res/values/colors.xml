@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/main_dark_slate_gray</color>
+    <color name="colorPrimaryDark">@color/shaded_dark_slate_gray</color>
+    <color name="colorAccent">@color/main_tan</color>
+
+    <color name="main_tan">#D3CDAC</color>
+    <color name="main_dark_khaki">#B79F79</color>
+    <color name="main_dark_slate_gray">#354948</color>
+    <color name="main_dim_gray">#716556</color>
+    <color name="main_gray">#7E8374</color>
+
+    <color name="tinted_dark_slate_gray">#5d6d6c</color>
+    <color name="shaded_dark_slate_gray">#253332</color>
 </resources>
