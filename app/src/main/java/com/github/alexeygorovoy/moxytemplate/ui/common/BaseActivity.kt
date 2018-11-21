@@ -1,8 +1,9 @@
 package com.github.alexeygorovoy.moxytemplate.ui.common
 
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 
 import com.github.alexeygorovoy.moxytemplate.App
@@ -25,6 +26,11 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         getActivityComponent().inject(this)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = ContextCompat.getColor(this, R.color.shaded_dark_slate_gray)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.shaded_dark_slate_gray)
+        }
     }
 
     fun replaceToFragment(fragment: Fragment) {
