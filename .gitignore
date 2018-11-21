@@ -9,6 +9,7 @@
 *.gradle/
 *.iml
 *~
+ids.xml
 
 # Windows thumbnail db
 Thumbs.db
