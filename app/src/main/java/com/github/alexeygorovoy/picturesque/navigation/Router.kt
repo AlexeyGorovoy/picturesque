@@ -1,21 +1,23 @@
 package com.github.alexeygorovoy.picturesque.navigation
 
-import android.app.Activity
-import android.content.Intent
-
 import com.github.alexeygorovoy.picturesque.api.models.Hero
-import com.github.alexeygorovoy.picturesque.ui.common.BaseActivity
-import com.github.alexeygorovoy.picturesque.ui.common.MainActivity
-import com.github.alexeygorovoy.picturesque.ui.demo.details.view.HeroDetailsFragment
+import ru.terrakok.cicerone.Router
 
-class Router {
+class Router : Router() {
 
-    fun startMainActivity(activity: Activity) {
-        val intent = Intent(activity, MainActivity::class.java)
-        activity.startActivity(intent)
+    fun openSplashScreen() {
+        newRootScreen(Screens.SplashScreen())
     }
 
-    fun openHeroDetails(activity: BaseActivity, hero: Hero) {
-        activity.replaceToFragment(HeroDetailsFragment.newInstance(hero))
+    fun openHeroListScreen() {
+        newRootScreen(Screens.HeroesListScreen())
+    }
+
+    fun openHeroDetailsScreen(hero: Hero) {
+        navigateTo(Screens.HeroDetailsScreen(hero))
+    }
+
+    fun openSinglePhotoScreen() {
+        navigateTo(Screens.SinglePhotoScreen())
     }
 }

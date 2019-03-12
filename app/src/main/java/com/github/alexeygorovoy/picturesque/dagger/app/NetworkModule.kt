@@ -5,12 +5,12 @@ import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.HeroApi
 import com.github.alexeygorovoy.picturesque.api.UnsplashApi
 import com.github.alexeygorovoy.picturesque.api.interceptors.UnsplashHeadersInterceptor
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
@@ -18,7 +18,7 @@ class NetworkModule {
 
     @AppScope
     @Provides
-    internal fun provideApiService(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJavaCallAdapterFactory): HeroApi {
+    internal fun provideApiService(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJava2CallAdapterFactory): HeroApi {
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(HEROES_BASE_URL)
@@ -31,7 +31,7 @@ class NetworkModule {
 
     @AppScope
     @Provides
-    internal fun provideUnsplashApi(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJavaCallAdapterFactory) : UnsplashApi {
+    internal fun provideUnsplashApi(client: OkHttpClient, gson: GsonConverterFactory, rxAdapter: RxJava2CallAdapterFactory): UnsplashApi {
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(UNSPLASH_BASE_URL)
@@ -65,14 +65,14 @@ class NetworkModule {
 
     @AppScope
     @Provides
-    internal fun provideUnsplashHeadersInterceptor(context: Context): UnsplashHeadersInterceptor{
+    internal fun provideUnsplashHeadersInterceptor(context: Context): UnsplashHeadersInterceptor {
         return UnsplashHeadersInterceptor(context.getString(R.string.unsplash_access_key))
     }
 
     @AppScope
     @Provides
-    internal fun provideRxAdapter(): RxJavaCallAdapterFactory {
-        return RxJavaCallAdapterFactory.create()
+    internal fun provideRxAdapter(): RxJava2CallAdapterFactory{
+        return RxJava2CallAdapterFactory.create()
     }
 
     @Provides

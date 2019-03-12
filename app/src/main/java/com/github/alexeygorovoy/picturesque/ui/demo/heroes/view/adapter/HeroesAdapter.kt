@@ -1,40 +1,18 @@
 package com.github.alexeygorovoy.picturesque.ui.demo.heroes.view.adapter
 
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.models.Hero
-import rx.Observable
-import rx.subjects.PublishSubject
-import java.util.ArrayList
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
-class HeroesAdapter : RecyclerView.Adapter<HeroViewHolder>() {
+class HeroesAdapter(
+    onClickListener: (hero: Hero) -> Unit
+) : ListDelegationAdapter<List<Hero>>() {
 
-    private val itemClicks = PublishSubject.create<Hero>()
-    private val listHeroes = ArrayList<Hero>()
+    init {
+        delegatesManager.addDelegate(HeroAdapterDelegate(onClickListener))
+    }
 
-    fun setItems(heroes: List<Hero>) {
-        this.listHeroes.clear()
-        this.listHeroes.addAll(heroes)
+    override fun setItems(items: List<Hero>?) {
+        super.setItems(items)
         notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hero, parent, false)
-        return HeroViewHolder(view, itemClicks)
-    }
-
-    override fun onBindViewHolder(holder: HeroViewHolder, position: Int) {
-        val hero = listHeroes[position]
-        holder.bind(hero)
-    }
-
-    override fun getItemCount(): Int {
-        return listHeroes.size
-    }
-
-    fun onHeroClickedObservable(): Observable<Hero> {
-        return itemClicks.asObservable()
     }
 }

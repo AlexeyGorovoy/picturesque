@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.data.Photo
 import com.github.alexeygorovoy.picturesque.dagger.ui.developer.SinglePhotoModule
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.presenter.SinglePhotoPresenter
-import com.github.alexeygorovoy.picturesque.ui.misc.GlideApp
-import kotlinx.android.synthetic.main.fragment_single_photo.*
+import kotlinx.android.synthetic.main.single_photo_fragment.*
 import javax.inject.Inject
 
 class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
@@ -32,7 +32,7 @@ class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return layoutInflater.inflate(R.layout.fragment_single_photo, container, false)
+        return layoutInflater.inflate(R.layout.single_photo_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
     }
 
     override fun showPhotoDetails(photo: Photo) {
-        GlideApp.with(requireContext())
+        Glide.with(requireContext())
             .load(photo.urls.small)
             .into(photoView)
         description.text = photo.description

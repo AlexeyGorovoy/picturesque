@@ -3,12 +3,11 @@ package com.github.alexeygorovoy.picturesque.dagger.app
 import com.github.alexeygorovoy.picturesque.api.HeroApi
 import com.github.alexeygorovoy.picturesque.dagger.activity.ActivityComponent
 import com.github.alexeygorovoy.picturesque.dagger.activity.ActivityModule
-import com.github.alexeygorovoy.picturesque.utils.rx.RxSchedulers
-
+import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
 import dagger.Component
 
 @AppScope
-@Component(modules = [NetworkModule::class, AppContextModule::class, UtilsModule::class])
+@Component(modules = [NetworkModule::class, NavigationModule::class, AppContextModule::class, UtilsModule::class])
 interface AppComponent {
 
     operator fun plus(activityModule: ActivityModule): ActivityComponent

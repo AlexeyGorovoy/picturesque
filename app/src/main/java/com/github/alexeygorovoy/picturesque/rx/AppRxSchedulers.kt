@@ -1,8 +1,8 @@
-package com.github.alexeygorovoy.picturesque.utils.rx
+package com.github.alexeygorovoy.picturesque.rx
 
-import rx.Scheduler
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class AppRxSchedulers : RxSchedulers() {
 

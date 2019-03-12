@@ -9,6 +9,7 @@ import com.github.alexeygorovoy.picturesque.dagger.demo.splash.SplashModule
 import com.github.alexeygorovoy.picturesque.dagger.ui.developer.SinglePhotoComponent
 import com.github.alexeygorovoy.picturesque.dagger.ui.developer.SinglePhotoModule
 import com.github.alexeygorovoy.picturesque.ui.common.BaseActivity
+import com.github.alexeygorovoy.picturesque.ui.common.MainActivity
 
 import dagger.Subcomponent
 
@@ -22,5 +23,5 @@ interface ActivityComponent {
     operator fun plus(module: SinglePhotoModule): SinglePhotoComponent
 
     fun inject(baseActivity: BaseActivity)
-
+    fun inject(baseActivity: MainActivity)
 }
