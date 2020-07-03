@@ -1,12 +1,11 @@
-package com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.presenter
+package com.github.alexeygorovoy.picturesque.ui.singlephoto.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.github.alexeygorovoy.picturesque.api.UnsplashApi
 import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpPresenter
-import com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.view.SinglePhotoView
+import com.github.alexeygorovoy.picturesque.ui.singlephoto.view.SinglePhotoView
 import timber.log.Timber
-import javax.inject.Inject
 
 @InjectViewState
 class SinglePhotoPresenter internal constructor(

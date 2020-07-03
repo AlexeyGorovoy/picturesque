@@ -1,4 +1,4 @@
-package com.github.alexeygorovoy.picturesque.ui.demo.splash.view
+package com.github.alexeygorovoy.picturesque.ui.splash.view
 
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpView
 

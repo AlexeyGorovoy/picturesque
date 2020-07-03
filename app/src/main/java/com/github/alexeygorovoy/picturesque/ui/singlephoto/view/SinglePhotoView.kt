@@ -1,4 +1,4 @@
-package com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.view
+package com.github.alexeygorovoy.picturesque.ui.singlephoto.view
 
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType

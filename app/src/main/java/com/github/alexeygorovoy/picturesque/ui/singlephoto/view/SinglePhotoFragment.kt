@@ -1,4 +1,4 @@
-package com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.view
+package com.github.alexeygorovoy.picturesque.ui.singlephoto.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.data.Photo
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
-import com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.presenter.SinglePhotoPresenter
+import com.github.alexeygorovoy.picturesque.ui.singlephoto.presenter.SinglePhotoPresenter
 import kotlinx.android.synthetic.main.single_photo_fragment.*
 import org.koin.android.ext.android.get
 

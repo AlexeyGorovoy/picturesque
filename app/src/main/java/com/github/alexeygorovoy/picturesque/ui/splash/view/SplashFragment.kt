@@ -1,4 +1,4 @@
-package com.github.alexeygorovoy.picturesque.ui.demo.splash.view
+package com.github.alexeygorovoy.picturesque.ui.splash.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
-import com.github.alexeygorovoy.picturesque.ui.demo.splash.presenter.SplashPresenter
+import com.github.alexeygorovoy.picturesque.ui.splash.presenter.SplashPresenter
 import org.koin.android.ext.android.get
 
 class SplashFragment : BaseMvpFragment(), SplashView {

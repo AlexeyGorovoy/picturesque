@@ -1,10 +1,10 @@
-package com.github.alexeygorovoy.picturesque.ui.demo.splash.presenter
+package com.github.alexeygorovoy.picturesque.ui.splash.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.github.alexeygorovoy.picturesque.navigation.Router
 import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpPresenter
-import com.github.alexeygorovoy.picturesque.ui.demo.splash.view.SplashView
+import com.github.alexeygorovoy.picturesque.ui.splash.view.SplashView
 import io.reactivex.Single
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
