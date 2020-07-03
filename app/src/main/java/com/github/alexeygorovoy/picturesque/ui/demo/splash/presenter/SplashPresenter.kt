@@ -8,10 +8,9 @@ import com.github.alexeygorovoy.picturesque.ui.demo.splash.view.SplashView
 import io.reactivex.Single
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 @InjectViewState
-class SplashPresenter @Inject internal constructor(
+class SplashPresenter internal constructor(
     private val rxSchedulers: RxSchedulers,
     private val router: Router
 ) : BaseMvpPresenter<SplashView>() {

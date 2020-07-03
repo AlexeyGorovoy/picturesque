@@ -7,24 +7,19 @@ import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.picturesque.R
-import com.github.alexeygorovoy.picturesque.dagger.demo.splash.SplashModule
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.picturesque.ui.demo.splash.presenter.SplashPresenter
-import javax.inject.Inject
+import org.koin.android.ext.android.get
 
 class SplashFragment : BaseMvpFragment(), SplashView {
 
-    @Inject
     @InjectPresenter
     lateinit var splashPresenter: SplashPresenter
 
     @ProvidePresenter
-    fun providePresenter(): SplashPresenter {
-        return splashPresenter
-    }
+    fun providePresenter(): SplashPresenter = get()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        activityComponent.plus(SplashModule()).inject(this)
         super.onCreate(savedInstanceState)
     }
 

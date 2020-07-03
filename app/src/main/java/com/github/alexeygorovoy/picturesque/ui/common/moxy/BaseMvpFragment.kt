@@ -1,13 +1,9 @@
 package com.github.alexeygorovoy.picturesque.ui.common.moxy
 
-import com.github.alexeygorovoy.picturesque.dagger.activity.ActivityComponent
 import com.github.alexeygorovoy.picturesque.ui.common.BaseActivity
 import es.dmoral.toasty.Toasty
 
 open class BaseMvpFragment : MvpAppCompatFragment(), BaseMvpView {
-
-    protected val activityComponent: ActivityComponent
-        get() = baseActivity.getActivityComponent()
 
     protected val baseActivity: BaseActivity
         get() = requireActivity() as BaseActivity

@@ -9,26 +9,19 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.data.Photo
-import com.github.alexeygorovoy.picturesque.dagger.ui.developer.SinglePhotoModule
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.picturesque.ui.developer.singlephoto.presenter.SinglePhotoPresenter
 import kotlinx.android.synthetic.main.single_photo_fragment.*
-import javax.inject.Inject
+import org.koin.android.ext.android.get
 
 class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
 
-    @Inject
     @InjectPresenter
     lateinit var presenter: SinglePhotoPresenter
 
     @ProvidePresenter
     fun providePresenter(): SinglePhotoPresenter {
-        return presenter
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        activityComponent.plus(SinglePhotoModule()).inject(this)
-        super.onCreate(savedInstanceState)
+        return get()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

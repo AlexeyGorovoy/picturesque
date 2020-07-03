@@ -10,7 +10,6 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.models.Hero
-import com.github.alexeygorovoy.picturesque.dagger.demo.details.HeroDetailsModule
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.picturesque.ui.demo.details.presenter.HeroDetailsPresenter
 import kotlinx.android.synthetic.main.hero_details_fragment.*
@@ -28,7 +27,7 @@ class HeroDetailsFragment : BaseMvpFragment(), HeroDetailsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         val hero = arguments!!.getSerializable(ARG_HERO) as Hero
 
-        activityComponent.plus(HeroDetailsModule(hero)).inject(this)
+//        activityComponent.plus(HeroDetailsModule(hero)).inject(this)
         super.onCreate(savedInstanceState)
     }
 

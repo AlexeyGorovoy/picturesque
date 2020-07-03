@@ -9,7 +9,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class SinglePhotoPresenter @Inject internal constructor(
+class SinglePhotoPresenter internal constructor(
     private val unsplashApi: UnsplashApi,
     private val rxSchedulers: RxSchedulers
 ) : BaseMvpPresenter<SinglePhotoView>() {

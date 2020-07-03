@@ -40,9 +40,10 @@ dependencies {
     def rxJavaVersion = '2.2.13'
     def rxAndroidVersion = '2.1.1'
     def daggerVersion = '2.24'
+    def koinVersion = '2.1.5'
     def moxyVersion = '1.5.3'
     def ciceroneVersion = '5.0.0'
-    def androidXVersion = '1.0.0'
+    def androidXVersion = '1.1.0'
     def adapterDelegatesVersion = '4.0.0'
     def toastyVersion = '1.4.0'
 
@@ -75,10 +76,15 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
-    //Dependencies injection
+    //Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // Koin
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-android-scope:$koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$koinVersion"
 
     compileOnly "javax.annotation:jsr250-api:1.0"
 
@@ -89,7 +95,7 @@ dependencies {
 
     //Android
     implementation "androidx.recyclerview:recyclerview:$androidXVersion"
-    implementation "androidx.cardview:cardview:$androidXVersion"
+    implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.google.android.material:material:$androidXVersion"
     implementation "androidx.appcompat:appcompat:$androidXVersion"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"

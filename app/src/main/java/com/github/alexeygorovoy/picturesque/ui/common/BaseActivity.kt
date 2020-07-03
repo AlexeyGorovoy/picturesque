@@ -4,34 +4,19 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.github.alexeygorovoy.picturesque.App
 import com.github.alexeygorovoy.picturesque.R
-import com.github.alexeygorovoy.picturesque.dagger.activity.ActivityComponent
-import com.github.alexeygorovoy.picturesque.dagger.activity.ActivityModule
 import com.github.alexeygorovoy.picturesque.navigation.Navigator
+import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
-import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var navigatorHolder: NavigatorHolder
+    private val navigatorHolder: NavigatorHolder by inject()
 
     private val navigator: Navigator = Navigator(this, R.id.fragmentContainer)
 
-    private var activityComponent: ActivityComponent? = null
-
-    fun getActivityComponent(): ActivityComponent {
-        return activityComponent ?: createComponent()
-            .also { activityComponent = it }
-    }
-
-    private fun createComponent() = (application as App).appComponent.plus(ActivityModule(this))
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        getActivityComponent().inject(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = ContextCompat.getColor(this, R.color.shaded_dark_slate_gray)

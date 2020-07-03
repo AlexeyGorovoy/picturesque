@@ -9,7 +9,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.models.Hero
-import com.github.alexeygorovoy.picturesque.dagger.demo.heroes.HeroesModule
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
 import com.github.alexeygorovoy.picturesque.ui.demo.heroes.presenter.HeroesListPresenter
 import com.github.alexeygorovoy.picturesque.ui.demo.heroes.view.adapter.HeroesAdapter
@@ -28,7 +27,7 @@ class HeroesListFragment : BaseMvpFragment(), HeroesListView {
     fun providePresenter(): HeroesListPresenter = presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        activityComponent.plus(HeroesModule()).inject(this)
+//        activityComponent.plus(HeroesModule()).inject(this)
         super.onCreate(savedInstanceState)
     }
 

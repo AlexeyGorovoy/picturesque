@@ -1,23 +1,22 @@
 package com.github.alexeygorovoy.picturesque
 
 import androidx.multidex.MultiDexApplication
-
-import com.github.alexeygorovoy.picturesque.dagger.app.AppComponent
-import com.github.alexeygorovoy.picturesque.dagger.app.AppContextModule
-import com.github.alexeygorovoy.picturesque.dagger.app.DaggerAppComponent
+import com.github.alexeygorovoy.picturesque.koin.navigationModule
+import com.github.alexeygorovoy.picturesque.koin.networkModule
+import com.github.alexeygorovoy.picturesque.koin.singlePhotoModule
+import com.github.alexeygorovoy.picturesque.koin.splashModule
+import com.github.alexeygorovoy.picturesque.koin.utilsModule
 import com.squareup.leakcanary.LeakCanary
-
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
-class App  : MultiDexApplication() {
-
-    lateinit var appComponent: AppComponent
-        private set
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
         initialiseLogger()
-        initAppComponent()
+        startKoin()
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return
@@ -25,8 +24,17 @@ class App  : MultiDexApplication() {
         LeakCanary.install(this)
     }
 
-    private fun initAppComponent() {
-        appComponent = DaggerAppComponent.builder().appContextModule(AppContextModule(this)).build()
+    private fun startKoin() {
+        startKoin {
+            androidContext(this@App)
+            modules(
+                navigationModule,
+                utilsModule,
+                networkModule,
+                splashModule,
+                singlePhotoModule
+            )
+        }
     }
 
     private fun initialiseLogger() {
