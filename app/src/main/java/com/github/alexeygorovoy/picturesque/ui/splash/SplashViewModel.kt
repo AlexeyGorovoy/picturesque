@@ -1,23 +1,18 @@
-package com.github.alexeygorovoy.picturesque.ui.splash.presenter
+package com.github.alexeygorovoy.picturesque.ui.splash
 
-import com.arellomobile.mvp.InjectViewState
 import com.github.alexeygorovoy.picturesque.navigation.Router
 import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
-import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpPresenter
-import com.github.alexeygorovoy.picturesque.ui.splash.view.SplashView
+import com.github.alexeygorovoy.picturesque.ui.common.viewModel.BaseViewModel
 import io.reactivex.Single
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-@InjectViewState
-class SplashPresenter internal constructor(
+class SplashViewModel(
     private val rxSchedulers: RxSchedulers,
     private val router: Router
-) : BaseMvpPresenter<SplashView>() {
+) : BaseViewModel() {
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-        // real loading will happen here if needed
+    fun waitAndOpenNextScreen() {
         Single.just("")
             .delay(500, TimeUnit.MILLISECONDS)
             .compose(rxSchedulers.computationToMainSingle())
@@ -27,6 +22,6 @@ class SplashPresenter internal constructor(
                 },
                 { throwable -> Timber.e(throwable, "error on splash!") }
             )
-            .unsubscribeOnDestroy()
+            .unsubscribeOnCleared()
     }
 }

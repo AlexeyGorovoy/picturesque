@@ -7,11 +7,12 @@ import com.github.alexeygorovoy.picturesque.api.interceptors.UnsplashHeadersInte
 import com.github.alexeygorovoy.picturesque.navigation.Router
 import com.github.alexeygorovoy.picturesque.rx.AppRxSchedulers
 import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
-import com.github.alexeygorovoy.picturesque.ui.splash.presenter.SplashPresenter
 import com.github.alexeygorovoy.picturesque.ui.singlephoto.presenter.SinglePhotoPresenter
+import com.github.alexeygorovoy.picturesque.ui.splash.SplashViewModel
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -86,8 +87,8 @@ val networkModule = module {
 }
 
 val splashModule = module {
-    single {
-        SplashPresenter(get(), get())
+    viewModel {
+        SplashViewModel(get(), get())
     }
 }
 
