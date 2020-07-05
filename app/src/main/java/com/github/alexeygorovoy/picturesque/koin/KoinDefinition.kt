@@ -7,7 +7,7 @@ import com.github.alexeygorovoy.picturesque.api.interceptors.UnsplashHeadersInte
 import com.github.alexeygorovoy.picturesque.navigation.Router
 import com.github.alexeygorovoy.picturesque.rx.AppRxSchedulers
 import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
-import com.github.alexeygorovoy.picturesque.ui.singlephoto.presenter.SinglePhotoPresenter
+import com.github.alexeygorovoy.picturesque.ui.singlephoto.SinglePhotoViewModel
 import com.github.alexeygorovoy.picturesque.ui.splash.SplashViewModel
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
@@ -93,7 +93,7 @@ val splashModule = module {
 }
 
 val singlePhotoModule = module {
-    single {
-        SinglePhotoPresenter(get(), get())
+    viewModel {
+        SinglePhotoViewModel(get(), get())
     }
 }

@@ -1,28 +1,21 @@
-package com.github.alexeygorovoy.picturesque.ui.singlephoto.view
+package com.github.alexeygorovoy.picturesque.ui.singlephoto
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.data.Photo
 import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
-import com.github.alexeygorovoy.picturesque.ui.singlephoto.presenter.SinglePhotoPresenter
+import com.github.alexeygorovoy.picturesque.ui.singlephoto.view.SinglePhotoView
 import kotlinx.android.synthetic.main.single_photo_fragment.*
-import org.koin.android.ext.android.get
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
 
-    @InjectPresenter
-    lateinit var presenter: SinglePhotoPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): SinglePhotoPresenter {
-        return get()
-    }
+    private val viewModel: SinglePhotoViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return layoutInflater.inflate(R.layout.single_photo_fragment, container, false)
@@ -30,7 +23,26 @@ class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        refresh.setOnClickListener { presenter.onRefresh() }
+
+        refresh.setOnClickListener { viewModel.onRefresh() }
+
+        viewModel.progress.observe(this, Observer { progress ->
+            if (progress) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
+        })
+
+        viewModel.singlePhotoResult.observe(this, Observer { photoResult ->
+            photoResult.fold({ photo ->
+                showPhotoDetails(photo)
+            }, { throwable ->
+                showError(throwable.message ?: "An error occurred")
+            })
+        })
+
+        viewModel.onRefresh()
     }
 
     override fun showPhotoDetails(photo: Photo) {
