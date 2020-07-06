@@ -8,12 +8,11 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.data.Photo
-import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
-import com.github.alexeygorovoy.picturesque.ui.singlephoto.view.SinglePhotoView
+import com.github.alexeygorovoy.picturesque.ui.common.BaseFragment
 import kotlinx.android.synthetic.main.single_photo_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
+class SinglePhotoFragment : BaseFragment() {
 
     private val viewModel: SinglePhotoViewModel by viewModel()
 
@@ -45,22 +44,22 @@ class SinglePhotoFragment : BaseMvpFragment(), SinglePhotoView {
         viewModel.onRefresh()
     }
 
-    override fun showPhotoDetails(photo: Photo) {
+    private fun showPhotoDetails(photo: Photo) {
         Glide.with(requireContext())
             .load(photo.urls.small)
             .into(photoView)
         description.text = photo.description
     }
 
-    override fun showError(errorMessage: String) {
+    private fun showError(errorMessage: String) {
         errors.text = errorMessage
     }
 
-    override fun showProgress() {
+    private fun showProgress() {
         errors.text = "Loading..."
     }
 
-    override fun hideProgress() {
+    private fun hideProgress() {
         errors.text = ""
     }
 

@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.alexeygorovoy.picturesque.R
-import com.github.alexeygorovoy.picturesque.ui.common.moxy.BaseMvpFragment
+import com.github.alexeygorovoy.picturesque.ui.common.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SplashFragment : BaseMvpFragment() {
+class SplashFragment : BaseFragment() {
 
     private val viewModel: SplashViewModel by viewModel()
 

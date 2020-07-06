@@ -1,22 +1,22 @@
-package com.github.alexeygorovoy.picturesque.ui.common.moxy
+package com.github.alexeygorovoy.picturesque.ui.common
 
-import com.github.alexeygorovoy.picturesque.ui.common.BaseActivity
+import androidx.fragment.app.Fragment
 import es.dmoral.toasty.Toasty
 
-open class BaseMvpFragment : MvpAppCompatFragment(), BaseMvpView {
+open class BaseFragment : Fragment() {
 
     protected val baseActivity: BaseActivity
         get() = requireActivity() as BaseActivity
 
-    override fun showInfoToast(message: CharSequence) {
+    fun showInfoToast(message: CharSequence) {
         Toasty.info(requireActivity(), message.toString()).show()
     }
 
-    override fun showErrorToast(message: CharSequence) {
+    fun showErrorToast(message: CharSequence) {
         Toasty.error(requireActivity(), message.toString()).show()
     }
 
-    override fun showSuccessToast(message: CharSequence) {
+    fun showSuccessToast(message: CharSequence) {
         Toasty.success(requireActivity(), message.toString()).show()
     }
 

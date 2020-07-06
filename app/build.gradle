@@ -41,7 +41,6 @@ dependencies {
     def rxAndroidVersion = '2.1.1'
     def daggerVersion = '2.24'
     def koinVersion = '2.1.5'
-    def moxyVersion = '1.5.3'
     def ciceroneVersion = '5.0.0'
     def androidXVersion = '1.1.0'
     def adapterDelegatesVersion = '4.0.0'
@@ -85,13 +84,6 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-scope:$koinVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
-
-    compileOnly "javax.annotation:jsr250-api:1.0"
-
-    // Moxy
-    implementation "com.arello-mobile:moxy:$moxyVersion"
-    implementation "com.arello-mobile:moxy-app-compat:$moxyVersion"
-    kapt "com.arello-mobile:moxy-compiler:$moxyVersion"
 
     //Android
     implementation "androidx.recyclerview:recyclerview:$androidXVersion"
