@@ -2,15 +2,15 @@ package com.github.alexeygorovoy.picturesque.ui.singlephoto
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.github.alexeygorovoy.picturesque.api.UnsplashApi
 import com.github.alexeygorovoy.picturesque.api.data.Photo
-import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
 import com.github.alexeygorovoy.picturesque.ui.common.viewModel.BaseViewModel
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class SinglePhotoViewModel(
-    private val unsplashApi: UnsplashApi,
-    private val rxSchedulers: RxSchedulers
+    private val unsplashApi: UnsplashApi
 ) : BaseViewModel() {
 
     private val _singlePhotoResult: MutableLiveData<Result<Photo>> = MutableLiveData()
@@ -21,18 +21,16 @@ class SinglePhotoViewModel(
     }
 
     private fun loadRandomPhoto() {
-        unsplashApi.getRandomPhoto()
-            .compose(rxSchedulers.ioToMainSingle())
-            .progress()
-            .subscribe(
-                {
-                    _singlePhotoResult.value = Result.success(it)
-                },
-                {
-                    _singlePhotoResult.value = Result.failure(it)
-                    Timber.e(it, "error loading single photo")
+        viewModelScope.launch {
+             val photo = withProgress {
+                runCatching {
+                    unsplashApi.getRandomPhoto()
                 }
-            )
-            .unsubscribeOnCleared()
+            }
+            _singlePhotoResult.value = photo
+            if (photo.isFailure) {
+                Timber.e(photo.exceptionOrNull(), "error loading single photo")
+            }
+        }
     }
 }

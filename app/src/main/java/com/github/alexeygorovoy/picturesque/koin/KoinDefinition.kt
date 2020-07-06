@@ -5,11 +5,8 @@ import com.github.alexeygorovoy.picturesque.R
 import com.github.alexeygorovoy.picturesque.api.UnsplashApi
 import com.github.alexeygorovoy.picturesque.api.interceptors.UnsplashHeadersInterceptor
 import com.github.alexeygorovoy.picturesque.navigation.Router
-import com.github.alexeygorovoy.picturesque.rx.AppRxSchedulers
-import com.github.alexeygorovoy.picturesque.rx.RxSchedulers
 import com.github.alexeygorovoy.picturesque.ui.singlephoto.SinglePhotoViewModel
 import com.github.alexeygorovoy.picturesque.ui.splash.SplashViewModel
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.dsl.viewModel
@@ -31,9 +28,6 @@ val navigationModule = module {
 }
 
 val utilsModule = module {
-    single<RxSchedulers> {
-        AppRxSchedulers()
-    }
 
 }
 
@@ -44,13 +38,11 @@ val networkModule = module {
     single {
         val httpClient = get<OkHttpClient>()
         val converterFactory = get<GsonConverterFactory>()
-        val rxAdapterFactory = get<RxJava2CallAdapterFactory>()
 
         val retrofit = Retrofit.Builder()
             .client(httpClient)
             .baseUrl(UNSPLASH_BASE_URL)
             .addConverterFactory(converterFactory)
-            .addCallAdapterFactory(rxAdapterFactory)
             .build()
 
         retrofit.create(UnsplashApi::class.java)
@@ -78,22 +70,18 @@ val networkModule = module {
     }
 
     single {
-        RxJava2CallAdapterFactory.create()
-    }
-
-    single {
         GsonConverterFactory.create()
     }
 }
 
 val splashModule = module {
     viewModel {
-        SplashViewModel(get(), get())
+        SplashViewModel(get())
     }
 }
 
 val singlePhotoModule = module {
     viewModel {
-        SinglePhotoViewModel(get(), get())
+        SinglePhotoViewModel(get())
     }
 }
